@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ComposeApplication</string>
+    <string name="title_activity_tv_show_screen">TvShowScreen</string>
 </resources>
