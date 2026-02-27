@@ -1,12 +1,16 @@
 package com.example.composeapplication.compose
 
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.example.composeapplication.modal.TvShowlist
 
 @Composable
-fun TvShowApp(displayTvShowScreen: @Composable (selectedItem: (TvShowlist) -> Unit) -> Unit) {
+fun TvShowApp(
+    windowWidthSizeClass: WindowWidthSizeClass,
+    displayTvShowScreen: @Composable (selectedItem: (TvShowlist) -> Unit) -> Unit
+) {
     val (currentScreen, setCurrentScreen) = remember { mutableStateOf<TvShowlist?>(null) }
 
     if (currentScreen == null) {
@@ -14,8 +18,10 @@ fun TvShowApp(displayTvShowScreen: @Composable (selectedItem: (TvShowlist) -> Un
             setCurrentScreen(tvShow)
         }
     } else {
-        InfoScreen(tvShow = currentScreen, onBack = {
-            setCurrentScreen(null)
-        })
+        InfoScreen(
+            tvShow = currentScreen,
+            windowWidthSizeClass = windowWidthSizeClass,
+            onBack = { setCurrentScreen(null) }
+        )
     }
 }
